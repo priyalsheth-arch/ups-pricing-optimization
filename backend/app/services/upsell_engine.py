@@ -393,11 +393,11 @@ async def run_upsell_analysis(store_id: int, db: AsyncSession, period_days: int 
             # Cross-sell: count sessions missing the add-on
             missing_count = 0
             for key, cats in session_categories.items():
-                if rule.rule_id == "C1" and "packing" in cats and "supplies" not in cats:
+                if rule.rule_id == "C1" and "PACKING" in cats and "SUPPLIES" not in cats:
                     missing_count += 1
-                elif rule.rule_id == "C2" and "shipping" in cats and "packing" not in cats:
+                elif rule.rule_id == "C2" and "SHIPPING" in cats and "PACKING" not in cats:
                     missing_count += 1
-                elif rule.rule_id == "M1" and "mailbox" in cats:
+                elif rule.rule_id == "M1" and "MAILBOX" in cats:
                     codes = session_service_codes.get(key, set())
                     if not any("NOTIF" in c for c in codes):
                         missing_count += 1
